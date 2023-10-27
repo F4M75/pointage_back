@@ -19,15 +19,24 @@ export class WorkerService {
     return this.workerModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} worker`;
-  }
+  findByDate(date_creation: string) {
+    /*
+     ** here I just set the time to 00:00 and get the next day so the date will be between them
+     */
+    const formatedDate = new Date(date_creation);
 
-  update(id: number, updateWorkerDto: UpdateWorkerDto) {
-    return `This action updates a #${id} worker`;
-  }
+    /* Set the time to midnight UTC for the given date */
+    formatedDate.setUTCHours(0, 0, 0, 0);
 
-  remove(id: number) {
-    return `This action removes a #${id} worker`;
+    const nextDay = new Date(formatedDate);
+    /* Get the date for the next day */
+    nextDay.setUTCDate(nextDay.getUTCDate() + 1);
+
+    return this.workerModel.find({
+      createdAt: {
+        $gte: formatedDate,
+        $lt: nextDay,
+      },
+    });
   }
 }
