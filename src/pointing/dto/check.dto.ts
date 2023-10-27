@@ -1,10 +1,17 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
 
 export class CheckDto {
   @IsString()
+  @ApiProperty({
+    description: 'Identifiant of the worker',
+  })
   idWorker: string;
 
   @IsString()
   @IsOptional()
+  @ApiProperty({
+    description: 'A simple commend, can be null',
+  })
   comments: string;
 }
