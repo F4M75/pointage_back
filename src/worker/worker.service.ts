@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateWorkerDto } from './dto/create-worker.dto';
-import { UpdateWorkerDto } from './dto/update-worker.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Worker } from './worker.schema';
