@@ -1,14 +1,7 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { WorkerService } from './worker.service';
 import { CreateWorkerDto } from './dto/create-worker.dto';
+import { FilterByDateDto } from './dto/filterByDate.dto';
 
 @Controller('worker')
 export class WorkerController {
@@ -25,7 +18,7 @@ export class WorkerController {
   }
 
   @Post('/by_date')
-  findByDate(@Body('date_creation') date_creation: string) {
-    return this.workerService.findByDate(date_creation);
+  findByDate(@Body() filterByDateDto: FilterByDateDto) {
+    return this.workerService.findByDate(filterByDateDto);
   }
 }
