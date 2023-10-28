@@ -28,4 +28,7 @@ $ docker compose up
 ```
 ## To see the documetation for api
 
-localhost:3000/api
+```bash
+$ localhost:3000/api
+
+```
