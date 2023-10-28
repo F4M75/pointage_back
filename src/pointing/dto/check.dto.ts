@@ -5,6 +5,7 @@ export class CheckDto {
   @IsString()
   @ApiProperty({
     description: 'Identifiant of the worker',
+    type: String,
   })
   idWorker: string;
 
@@ -12,6 +13,7 @@ export class CheckDto {
   @IsOptional()
   @ApiProperty({
     description: 'A simple commend, can be null',
+    type: String,
   })
   comments: string;
 }

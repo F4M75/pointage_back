@@ -3,6 +3,7 @@ import { CreateWorkerDto } from './dto/create-worker.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Worker } from './worker.schema';
+import { FilterByDateDto } from './dto/filterByDate.dto';
 
 @Injectable()
 export class WorkerService {
@@ -18,11 +19,11 @@ export class WorkerService {
     return this.workerModel.find().exec();
   }
 
-  findByDate(date_creation: string) {
+  findByDate(filterByDateDto: FilterByDateDto) {
     /*
      ** here I just set the time to 00:00 and get the next day so the date will be between them
      */
-    const formatedDate = new Date(date_creation);
+    const formatedDate = new Date(filterByDateDto.date_creation);
 
     /* Set the time to midnight UTC for the given date */
     formatedDate.setUTCHours(0, 0, 0, 0);
